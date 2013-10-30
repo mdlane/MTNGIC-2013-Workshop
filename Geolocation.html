@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="Description goes here">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<link rel="shortcut icon" href="tn_ball.png">
+  <link rel="apple-touch-icon" href="TNMap-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="TNMap-icon-ipad.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="TNMap-icon-iphone4.png">-->
+  <link rel="stylesheet" href="//js.arcgis.com/3.7compact/js/dojo/dijit/themes/claro/claro.css" media="screen">
+  <link rel="stylesheet" href="//js.arcgis.com/3.7compact/js/esri/css/esri.css">
+  <style>
+    html, body, #map { width: 100%; height: 100%; margin: 0px; padding: 0px; }
+    #locate { position: absolute; top: 100px; left: 20px; display: none; }
+    #geolocation_layer {
+      -webkit-animation-duration: 3s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-name: pulse;
+      -moz-animation-duration: 3s;
+      -moz-animation-iteration-count: infinite;
+      -moz-animation-name: pulse;
+    }
+    @-webkit-keyframes pulse {
+      0% { opacity: 1.0; }
+      45% { opacity: .20; }
+      100% { opacity: 1.0; }
+    }
+    @-moz-keyframes pulse {
+      0% { opacity: 1.0; }
+      45% { opacity: .20; }
+      100% { opacity: 1.0; }
+    }
+  </style>
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body class="claro">
+  <div id="map"></div>
+  <button id="locate">Find me</button>
+  <script src="//js.arcgis.com/3.7compact/"></script>
+  <script>
+    require(["esri/map", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/geometry/Point",
+      "esri/geometry/webMercatorUtils", "esri/arcgis/utils", "esri/domUtils", "dojo/on", "dojo/domReady!"],
+      function (Map, Graphic, SimpleMarkerSymbol, Point, webMercatorUtils, arcgisUtils, domUtils, on, domReady) {
+        var map, locateUser, watchID;
+        arcgisUtils.createMap('a32d72df44794026b4610e0b852ebfe3', 'map').then(
+          function (response) {//After the map is created, check if the browser supports geolocation and show button if it does
+            map = response.map;
+            if (navigator.geolocation) {
+              var btn = dojo.byId('locate');
+              domUtils.show(btn);
+              on(btn, 'click', locateUser);
+            }
+          }
+        );
+        locateUser = function () {
+          var btn = dojo.byId('locate');
+          if (!watchID) {//Are we currently watching the position?
+            btn.textContent = 'Locating';
+            watchID = navigator.geolocation.watchPosition(
+              function (location) {//This runs at creation and each position update
+                var loc, pt = webMercatorUtils.geographicToWebMercator(//geolocation api returns geographic, map needs webmercator
+                  new Point(location.coords.longitude, location.coords.latitude)
+                );
+                loc = map.getLayer("geolocation") || map.addLayer(new esri.layers.GraphicsLayer({ id: "geolocation" }));
+                if (loc.graphics.length > 0) {//Graphic already exists
+                  //If new location is leaving current view extent, pan to it
+                  if (!map.extent.expand(0.75).contains(pt)) {
+                    map.centerAt(pt);
+                  }
+                  loc.graphics[0].setGeometry(pt);
+                } else {//Graphic doesn't exist yet
+                  map.centerAndZoom(pt, 16);
+                  loc.add(new Graphic(pt,
+                    new SimpleMarkerSymbol({
+                      "type": "esriSMS",
+                      "style": "esriSMSCircle",
+                      "color": [0, 255, 0],
+                      "size": 12,
+                      "angle": 0,
+                      "xoffset": 0,
+                      "yoffset": 0,
+                      "outline": { "color": [145, 52, 32], "width": 1 }
+                    })
+                  ));
+                }
+              },
+              function (e) {
+                alert(e.code.toString());
+              }
+            );
+          } else {//Stop watching the position
+            navigator.geolocation.clearWatch(watchID);
+            watchID = false;
+            map.removeLayer(map.getLayer("geolocation"));
+            btn.textContent = 'Find me';
+          }
+        };
+      }
+    );
+  </script>
+</body>
+</html>

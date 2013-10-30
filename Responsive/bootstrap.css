@@ -1,0 +1,13 @@
+﻿.container{
+  background-color: lightgray;
+}
+.box {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  min-height: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.map {
+  height: 300px;
+}

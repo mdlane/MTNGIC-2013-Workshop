@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="Description goes here">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<link rel="shortcut icon" href="tn_ball.png">
+  <link rel="apple-touch-icon" href="TNMap-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="TNMap-icon-ipad.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="TNMap-icon-iphone4.png">-->
+  <link rel="stylesheet" href="/bs/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//js.arcgis.com/3.7compact/js/dojo/dijit/themes/claro/claro.css" media="screen">
+  <link rel="stylesheet" href="//js.arcgis.com/3.7compact/js/esri/css/esri.css">
+  <link rel="stylesheet" href="bootstrap.css">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="claro">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-brand">Brand</div>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link 1</a></li>
+          <li><a href="../links.html" target="_blank">Link 2</a></li>
+        </ul>
+        <button type="button" class="btn btn-default navbar-btn navbar-right">
+          <span class="glyphicon glyphicon-cog"></span>
+        </button>
+        <p class="navbar-text navbar-right" id="user">Extra info here </p>
+      </div>
+    </nav>
+    <div class="row">
+      <div class="col-sm-3 col-sm-push-9 col-lg-3 col-lg-push-9 box">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+      </div>
+      <div class="col-sm-9 col-sm-pull-3 col-lg-9 col-lg-pull-3">
+        <div id="map" class="map"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-4 box">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+       </p>
+      </div>
+      <div class="col-sm-12 col-md-4 box">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+      </div>
+      <div class="col-sm-12 col-md-4 box">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+      </div>
+    </div>
+  </div>
+  <script src="//code.jquery.com/jquery.js"></script><!-- has to be jQuery 1.x line for IE<9 support -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//js.arcgis.com/3.7compact/"></script>
+  <script>
+    require(["esri/map", "esri/arcgis/utils", "dojo/on", "dojo/domReady!"],
+      function(Map, arcgisUtils, on, domReady){
+        arcgisUtils.createMap('a32d72df44794026b4610e0b852ebfe3', 'map');
+      }
+    );
+  </script>
+</body>
+</html>

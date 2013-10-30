@@ -1,0 +1,70 @@
+﻿html, body { margin: 0px; }
+header {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+header, footer {
+  background-color: black;
+  color: white;
+  height: 80px;
+}
+h1, p {
+  padding: 0px 20px 0px 20px;
+}
+#main {
+  position: absolute;
+  bottom: 80px;
+  top: 80px;
+  left: 0px;
+  right: 300px;
+}
+#map {
+  height: 100%;
+}
+aside {
+  position: absolute;
+  top: 80px;
+  bottom: 80px;
+  right: 0px;
+  width: 300px;
+  background-color: lightgray;
+}
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+/* Standard width breakpoints taken from Bootstrap.css 1200, 992, 768, 480 */
+@media only screen and (max-width: 992px) {
+  #main {
+    right: 200px;
+  }
+  aside {
+    width: 200px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #main {
+    right: 150px;
+  }
+  aside {
+    width: 150px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  header, #main, aside, footer {
+    position: inherit;
+    width: 100%;
+  }
+  #main {
+    height: 300px;
+  }
+  aside {
+    height: auto;
+  }
+  h1, p {
+    margin: 0px;
+    padding: 20px 20px 10px 20px;
+  }
+}
