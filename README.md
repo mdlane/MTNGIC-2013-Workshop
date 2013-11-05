@@ -16,3 +16,6 @@ https://github.com/sebarmeli/JS-Redirection-Mobile-Site
 
 Respond - respond.min.js
 https://github.com/scottjehl/Respond
+
+HTML5 Shiv - html5.js
+https://code.google.com/p/html5shiv/
