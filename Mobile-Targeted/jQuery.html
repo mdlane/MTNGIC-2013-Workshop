@@ -48,17 +48,17 @@
       <a href="#home" data-icon="home" data-iconpos="notext" class="ui-btn-right"></a>
     </div>
     <div data-role="content">
-      <label for="search">Search by name:</label>
-      <input type="search" name="password" id="search1" value="" placeholder="Name of provider">
-      <label for="search">Search by address:</label>
-      <input type="search" name="password" id="search2" value="" placeholder="Address">
+      <label for="name">Search by name:</label>
+      <input type="search" name="name" id="searchname" value="" placeholder="Name of provider">
+      <label for="address">Search by address:</label>
+      <input type="search" name="address" id="searchaddress" value="" placeholder="Address">
       <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
         <legend>Search within a distance of your current location (miles):</legend>
-        <input type="radio" name="radio-choice-b" id="radio-choice-c" value="list" checked="checked">
+        <input type="radio" name="radio-choice-c" id="radio-choice-c" value="1" checked="checked">
         <label for="radio-choice-c">1</label>
-        <input type="radio" name="radio-choice-b" id="radio-choice-d" value="grid">
+        <input type="radio" name="radio-choice-d" id="radio-choice-d" value="2">
         <label for="radio-choice-d">2</label>
-        <input type="radio" name="radio-choice-b" id="radio-choice-e" value="gallery">
+        <input type="radio" name="radio-choice-e" id="radio-choice-e" value="3">
         <label for="radio-choice-e">5</label>
       </fieldset>
       <input type="submit" value="Submit" data-icon="grid" data-iconpos="right">
@@ -113,7 +113,7 @@
         var map, sizeMap;
         arcgisUtils.createMap('a32d72df44794026b4610e0b852ebfe3', 'map',
           {
-            mapOptions: {
+            mapOptions: {//We want to control when it resizes
               autoResize: false
             }
           }).then(function (result) {
