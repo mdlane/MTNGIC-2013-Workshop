@@ -66,7 +66,6 @@
                 var loc, pt = webMercatorUtils.geographicToWebMercator(//geolocation api returns geographic, map needs webmercator
                   new Point(location.coords.longitude, location.coords.latitude)
                 );
-                console.log(location);
                 loc = map.getLayer("geolocation") || map.addLayer(new esri.layers.GraphicsLayer({ id: "geolocation" }));
                 if (loc.graphics.length > 0) {//Graphic already exists
                   //If new location is leaving current view extent, pan to it
