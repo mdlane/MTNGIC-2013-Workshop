@@ -29,6 +29,7 @@ aside {
   right: 0px;
   width: 300px;
   background-color: lightgray;
+  overflow: auto;
 }
 footer {
   position: absolute;
